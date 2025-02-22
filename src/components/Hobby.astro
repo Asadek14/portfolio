@@ -1,0 +1,45 @@
+---
+interface Props {
+	src: string;
+    alt: string;
+    place: string;
+}
+
+const { src, alt, place } = Astro.props;
+
+let placeClass = '';
+if (place === 'top') {
+    placeClass = 'top';
+} else if (place === 'bottom') {
+    placeClass = 'bottom';
+}
+---
+
+<div class={`hobby-container ${placeClass}`}>
+    <img width="48" height="48" src={src} alt={alt} />
+</div>
+
+<style>
+    .hobby-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        width: 75px;
+        height: 75px;
+        border: 2px solid var(--gray-800);
+        background-color: var(--gray-900);
+    }
+
+    .hobby-container:hover {
+        background-color: var(--gray-800);
+    }
+
+    .top{
+
+    }
+
+    .bottom{
+        margin-top: 3rem;
+    }
+</style>

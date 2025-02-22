@@ -1,0 +1,138 @@
+---
+import Skill from "./Skill.astro";
+---
+<div class="pause">
+    <div class="marquee marquee--8">
+        {[...Array(12).keys()].map(i => (
+            <div class="marquee__item box to-left">
+                {<Skill index={i} />}
+            </div>))}
+    </div>
+</div>
+<div class="pause">
+    <div class="marquee marquee--8">
+        {[...Array(12).keys()].map(i => (
+            <div class="marquee__item box to-right">
+                {<Skill index={i + 12} />}
+            </div>))}
+    </div>
+</div>
+<style>
+
+    .box {
+        border: 1px solid var(--gray-800);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        background-color: var(--gray-900);
+        box-shadow: var(--shadow-sm);
+    }
+    .marquee {
+        display: flex;
+        block-size: 125px;
+        position: relative;
+        overflow-x: hidden;
+        mask-image: linear-gradient(
+            to right,
+            hsl(0 0% 0% / 0),
+            hsl(0 0% 0% / 1) 30%,
+            hsl(0 0% 0% / 1) 70%,
+            hsl(0 0% 0% / 0)
+        );
+    }
+
+    .marquee--8 {
+        --marquee-item-width: 157px;
+        --marquee-item-height: 300px;
+        --marquee-duration: 50s;
+        --marquee-items: 12;
+    }
+
+    .marquee__item {
+        --marquee-item-offset: max(
+            calc(var(--marquee-item-width) * var(--marquee-items)),
+            calc(100% + var(--marquee-item-width))
+        );
+        --marquee-delay: calc(var(--marquee-duration) / var(--marquee-items) * (var(--marquee-items) - var(--marquee-item-index)) * -1);
+        position: absolute;
+        inset-inline-start: var(--marquee-item-offset);
+        transform: translateX(-50%);
+        width: 150px;
+        height: 125px;
+    }
+
+    .to-left{
+        animation: to-left linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+    }
+
+    .to-right{
+        animation: to-right linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+    }
+
+    .pause{
+        margin-top: 1.25rem;
+    }
+
+    .pause:hover .marquee__item {
+        animation-play-state: paused;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(1) {
+        --marquee-item-index: 1;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(2) {
+        --marquee-item-index: 2;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(3) {
+        --marquee-item-index: 3;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(4) {
+        --marquee-item-index: 4;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(5) {
+        --marquee-item-index: 5;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(6) {
+        --marquee-item-index: 6;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(7) {
+        --marquee-item-index: 7;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(8) {
+        --marquee-item-index: 8;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(9) {
+        --marquee-item-index: 9;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(10) {
+        --marquee-item-index: 10;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(11) {
+        --marquee-item-index: 11;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(12) {
+        --marquee-item-index: 12;
+    }
+
+    @keyframes to-left {
+        to {  
+            inset-inline-start: calc(var(--marquee-item-width) * -1);
+        }
+    }
+
+    @keyframes to-right {
+        from {  
+            inset-inline-start: calc(var(--marquee-item-width) * -1);
+        }
+    }
+</style>

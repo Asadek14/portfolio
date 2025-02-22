@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { skills } from './Skills';
+
+interface Props {
+	index: number;
+}
+
+const { index } = Astro.props;
+const skill = skills[index];
+
+---
+
+<div class="skill-container">
+    <img src={skill.src}/>
+    {skill.name}
+</div>
+
+<style>
+	img {
+		width: 3.5rem;
+        height: 3.5rem;
+	}
+
+    .skill-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding-top: 0.3rem;
+    }
+</style>
